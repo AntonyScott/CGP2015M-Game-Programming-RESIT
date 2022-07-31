@@ -1,0 +1,37 @@
+// CGP2015M Game Programming RESIT - Antony Scott.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include "SDL.h"
+
+//user created header files:
+#include "GameWorld.h"
+
+using namespace std;
+
+GameWorld* gameWorld = nullptr;
+
+const int DELTA_TIME = 50;
+
+int main(int argc, char *argv[] )
+{
+	gameWorld = new GameWorld();
+
+	gameWorld->InitGameWorld("Antony Scott, CGP2015M Game Programming, Student ID: 25295522, Title: Robot Wars!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
+    while (gameWorld->Running())
+    {
+        //looks for keyboard/mouse events
+        gameWorld->Input();
+        
+        //Updates game state and variables
+        gameWorld->Update();
+
+        //draws game on screen
+        gameWorld->Render();
+    }
+
+    SDL_Delay(2000);
+
+    gameWorld->CleanUp();
+    return 0;
+}
