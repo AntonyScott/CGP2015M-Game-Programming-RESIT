@@ -12,7 +12,7 @@ GameWorld::~GameWorld() //deconstructor
 
 void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
-    aSquare.Init();
+    aSquare.Init(70, 70, 100, 100);
 
 	int flags = 0;
 	if (fullscreen) 

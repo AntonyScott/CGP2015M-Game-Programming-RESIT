@@ -8,11 +8,11 @@ class Square
 public:
 	Square();
 	~Square();
-	void Init();
+	void Init(int x, int y, int width, int height);
 	void Update();
 	void Input(int whichKey);
 	void Render(SDL_Renderer* aRenderer);
 	SDL_Rect rect;
-	int x, y, height, width, R, G, B;
+	int R, G, B;
 };
 #endif

@@ -10,12 +10,12 @@ Square::~Square()
 
 }
 
-void Square::Init() 
+void Square::Init(int x, int y, int width, int height)
 {
-	rect.x = 70;
-	rect.y = 70;
-	rect.w = 100;
-	rect.h = 100;
+	rect.x = x;
+	rect.y = y;
+	rect.h = height;
+	rect.w = width;
 
 	R = 255;
 	G = 0;
@@ -43,4 +43,5 @@ void Square::Render(SDL_Renderer* aRenderer)
 {
 	SDL_SetRenderDrawColor (aRenderer, R, G, B, 255);
 	SDL_RenderDrawRect (aRenderer, &rect);
+	SDL_Render1FillRect(aRenderer, &rect);
 }
