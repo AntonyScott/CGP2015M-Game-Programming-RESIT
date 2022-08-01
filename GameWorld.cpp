@@ -12,9 +12,9 @@ GameWorld::~GameWorld() //deconstructor
 
 void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
-    aTimer.resetTicksTimer(); //frame timer set to 0
-	int flags = 0;
+    aSquare.Init();
 
+	int flags = 0;
 	if (fullscreen) 
 	{
 		flags = SDL_WINDOW_FULLSCREEN_DESKTOP;
@@ -23,11 +23,15 @@ void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, 
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0) //attempts to init entire SDL Library
 	{
 		printf("SDL initialised \n");
-
+        aTimer.resetTicksTimer(); //frame timer set to 0
 		window = SDL_CreateWindow(title, xPos, yPos, width, height, flags); //window is created
 		if (window) 
 		{
 			printf("Window created! \n");
+            SDL_GetWindowSize(window, &width, &height);
+            printf("Width of the window: %i \n", width);
+            printf("Height of the window: %i \n", height);
+
 			renderer = SDL_CreateRenderer(window, -1, 0);
 		}
         else
@@ -71,58 +75,91 @@ void GameWorld::Input()
             {
             case SDLK_ESCAPE:
                 printf("Escape has been pressed. \n");
+                globalKeys[SDLK_ESCAPE] = true;
                 isRunning = false;
                 break;
             case SDLK_w:
                 printf("W has been pressed. \n");
+                globalKeys[SDLK_w] = true;
                 break;
             case SDLK_a:
                 printf("A has been pressed. \n");
+                globalKeys[SDLK_a] = true;
                 break;
             case SDLK_s:
                 printf("S has been pressed. \n");
+                globalKeys[SDLK_s] = true;
                 break;
             case SDLK_d:
                 printf("D has been pressed. \n");
+                globalKeys[SDLK_d] = true;
                 break;
             case SDLK_SPACE:
                 printf("Space has been pressed. \n");
+                globalKeys[SDLK_SPACE] = true;
                 break;
             }
         }
+
+        if (event.type == SDL_KEYUP && event.key.repeat == NULL) //checks to see if a key is pressed and not repeated
+        {
+            switch (event.key.keysym.sym)
+            {
+            case SDLK_ESCAPE:
+                printf("Escape has been unpressed. \n");
+                globalKeys[SDLK_ESCAPE] = false;
+                isRunning = false;
+                break;
+            case SDLK_w:
+                printf("W has been unpressed. \n");
+                globalKeys[SDLK_w] = false;
+                break;
+            case SDLK_a:
+                printf("A has been unpressed. \n");
+                globalKeys[SDLK_a] = false;
+                break;
+            case SDLK_s:
+                printf("S has been unpressed. \n");
+                globalKeys[SDLK_s] = false;
+                break;
+            case SDLK_d:
+                printf("D has been unpressed. \n");
+                globalKeys[SDLK_d] = false;
+                break;
+            case SDLK_SPACE:
+                printf("Space has been unpressed. \n");
+                globalKeys[SDLK_SPACE] = false;
+                break;
+            }
+        }
+        
     }
 }
 
 void GameWorld::Update()
 {
     //function for updating game world based on inputs. E.g. updated character positions, game state (win or lose), NPC decisions etc.
+    //block of code below calculates FPS and locks it
+    // if less time has passed than allocated block, wait difference
+    //rect.x++;
+    if (aTimer.getTicks() < DELTA_TIME)
+    {
+        SDL_Delay(DELTA_TIME - aTimer.getTicks());
+    }
 }
 
 void GameWorld::Render()
 {
     //function for rendering updates onto the screen, such as game states and updated character positions.
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 120, 255); //set colour of renderer
+    SDL_SetRenderDrawColor(renderer, 0, 0, 20, SDL_ALPHA_OPAQUE); //set colour of renderer
     SDL_RenderClear(renderer); //clears the window to colour of renderer
-    //SDL_RenderPresent(renderer); //shows colour of renderer to screen, always call at end of render function
+    //SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+    //SDL_RenderDrawRect(renderer, &rect);
+    aSquare.Render(renderer);
+    SDL_RenderPresent(renderer); //shows renderer to screen
 
-    SDL_Rect rect;
-    rect.x = 30;
-    rect.y = 30;
-    rect.w = 50;
-    rect.h = 50;
-
-    //rect.x++;
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-    SDL_RenderDrawRect(renderer, &rect);
-    SDL_RenderPresent(renderer); //shows colour of renderer to screen
-
-    //block of code below calculates FPS and locks it
-    // if less time has passed than allocated block, wait difference
-    if (aTimer.getTicks() < DELTA_TIME)
-    {
-        SDL_Delay(DELTA_TIME - aTimer.getTicks());
-    }
+    
 }
 
 void GameWorld::CleanUp()

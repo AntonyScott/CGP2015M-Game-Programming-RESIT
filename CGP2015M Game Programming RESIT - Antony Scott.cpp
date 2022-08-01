@@ -11,8 +11,6 @@ using namespace std;
 
 GameWorld* gameWorld = nullptr;
 
-const int DELTA_TIME = 50;
-
 int main(int argc, char *argv[] )
 {
 	gameWorld = new GameWorld();
@@ -30,8 +28,9 @@ int main(int argc, char *argv[] )
         gameWorld->Render();
     }
 
-    SDL_Delay(2000);
+    //SDL_Delay(2000);
 
     gameWorld->CleanUp();
+    SDL_Quit();
     return 0;
 }

@@ -1,11 +1,15 @@
 #pragma once
+//#define MAX_KEYS(256)
+#ifndef Game_WorldFILE
+#define Game_WorldFILE
+#define MAX_KEYS (256)
+#include <iostream>
 #include "SDL.h"
 #include "Timer.h"
-#include <iostream>
+#include "Square.h"
 
 class GameWorld {
 public:
-	Timer aTimer;
 	GameWorld();
 	~GameWorld();
 
@@ -18,7 +22,7 @@ public:
 	void Render();
 
 	//Keyboard handler
-	bool globalKeys[256];
+	bool globalKeys[MAX_KEYS];
 
 	//checks to see if game is running or not
 	bool Running() { return isRunning; }
@@ -27,10 +31,14 @@ public:
 	void CleanUp();
 
 private:
+	Timer aTimer;
+	Square aSquare;
 	bool fullscreen = false;
 	bool isRunning = false;
-	const int DELTA_TIME = 20;
+	const int DELTA_TIME = 30;
 	SDL_Renderer* renderer;
 	SDL_Window* window;
+	//SDL_Rect rect;
 
 };
+#endif
