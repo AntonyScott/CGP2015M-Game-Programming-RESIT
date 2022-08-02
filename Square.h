@@ -11,8 +11,12 @@ public:
 	void Init(int x, int y, int width, int height);
 	void Update();
 	void Input(int whichKey);
+
 	void Render(SDL_Renderer* aRenderer);
 	SDL_Rect rect;
-	int R, G, B;
+	int x, y, height, width, R, G, B;
+
+	static int SquareCounterTotal;
+	int SquareCounter;
 };
 #endif

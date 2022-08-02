@@ -2,12 +2,12 @@
 
 Square::Square() 
 {
-
+	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "Square Constructed with Param(%p)", this);
 }
 
 Square::~Square()
 {
-
+	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "Square Destroyed with Param(%p)", this);
 }
 
 void Square::Init(int x, int y, int width, int height)
@@ -43,5 +43,5 @@ void Square::Render(SDL_Renderer* aRenderer)
 {
 	SDL_SetRenderDrawColor (aRenderer, R, G, B, 255);
 	SDL_RenderDrawRect (aRenderer, &rect);
-	SDL_Render1FillRect(aRenderer, &rect);
+	SDL_RenderFillRect(aRenderer, &rect);
 }
