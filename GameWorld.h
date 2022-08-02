@@ -8,8 +8,11 @@
 #include "Timer.h"
 #include "Square.h"
 
+
+
 class GameWorld {
 public:
+	Square globalSquare;
 	GameWorld();
 	~GameWorld();
 

@@ -12,7 +12,8 @@ GameWorld::~GameWorld() //deconstructor
 
 void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
-    aSquare.Init(70, 70, 100, 100);
+    //aSquare.Init(70, 70, 100, 100);
+    globalSquare.Init(70, 70, 100, 100);
 
 	int flags = 0;
 	if (fullscreen) 
@@ -156,7 +157,8 @@ void GameWorld::Render()
     SDL_RenderClear(renderer); //clears the window to colour of renderer
     //SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
     //SDL_RenderDrawRect(renderer, &rect);
-    aSquare.Render(renderer);
+    //aSquare.Render(renderer);
+    globalSquare.Render(renderer);
     SDL_RenderPresent(renderer); //shows renderer to screen
 
     
