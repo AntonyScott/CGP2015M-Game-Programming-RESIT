@@ -1,4 +1,5 @@
 #include "Square.h"
+#include "GameWorld.h"
 
 Square::Square() 
 {
@@ -7,7 +8,7 @@ Square::Square()
 
 Square::~Square()
 {
-	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "Square Destroyed with Param(%p)", this);
+	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "Square Destructed with Param(%p)", this);
 }
 
 void Square::Init(int x, int y, int width, int height)
@@ -31,7 +32,10 @@ void Square::Init(int x, int y, int width, int height)
 
 void Square::Update() 
 {
-
+	//rect.x++;
+	int x, y;
+	SDL_GetWindowSize(parent->window, &x, &y);
+	printf("parent window size: %i -- %i \n", x, y);
 }
 
 void Square::Input(int whichKey) 
@@ -55,5 +59,13 @@ void Square::Render(SDL_Renderer* aRenderer)
 	for (auto& aSquareIterator : aSquareList) 
 	{
 		aSquareIterator->Render(aRenderer);
+	}
+}
+
+void Square::CleanUp() 
+{
+	for (auto& aSquareIterator : aSquareList)
+	{
+		delete aSquareIterator;
 	}
 }

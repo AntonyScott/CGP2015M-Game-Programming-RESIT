@@ -8,6 +8,7 @@
 #include "SDL.h"
 #include "Timer.h"
 #include "Square.h"
+#include "GameContainerSquare.h"
 
 
 
@@ -15,6 +16,7 @@ class GameWorld {
 public:
 	
 	Square globalSquare;
+	GameContainerSquare aGameContainerSquare;
 	GameWorld();
 	~GameWorld();
 
@@ -35,7 +37,6 @@ public:
 	//cleans memory allocation
 	void CleanUp();
 
-private:
 	Timer aTimer;
 	Square aSquare;
 	bool fullscreen = false;
@@ -44,6 +45,5 @@ private:
 	SDL_Renderer* renderer;
 	SDL_Window* window;
 	//SDL_Rect rect;
-
 };
 #endif

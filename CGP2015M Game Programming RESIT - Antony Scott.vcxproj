@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CGP2015M Game Programming RESIT - Antony Scott.cpp" />
+    <ClCompile Include="GameContainerSquare.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -148,6 +149,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameContainerSquare.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="Timer.h" />

@@ -13,7 +13,10 @@ GameWorld::~GameWorld() //deconstructor
 void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
     //aSquare.Init(70, 70, 100, 100);
-    globalSquare.Init(70, 70, 100, 100);
+    //globalSquare.Init(70, 70, 100, 100);
+    //globalSquare.parent = this;
+
+    //aGameContainerSquare.Init(50, 50, 0.0f, 1.0f, 7);
 
 	int flags = 0;
 	if (fullscreen) 
@@ -143,6 +146,8 @@ void GameWorld::Update()
     //block of code below calculates FPS and locks it
     // if less time has passed than allocated block, wait difference
     //rect.x++;
+    //globalSquare.Update();
+    //globalSquare.CleanUp();
     if (aTimer.getTicks() < DELTA_TIME)
     {
         SDL_Delay(DELTA_TIME - aTimer.getTicks());
@@ -159,6 +164,7 @@ void GameWorld::Render()
     //SDL_RenderDrawRect(renderer, &rect);
     //aSquare.Render(renderer);
     //globalSquare.Render(renderer);
+    //aGameContainerSquare.Render(renderer);
     SDL_RenderPresent(renderer); //shows renderer to screen
 
     
@@ -170,7 +176,7 @@ void GameWorld::CleanUp()
     printf("Window destroyed! \n");
     SDL_DestroyRenderer(renderer);
     printf("Renderer destroyed! \n");
+    //globalSquare.CleanUp();
     SDL_Quit();
-
     printf("All processes eliminated! \n");
 }
