@@ -4,6 +4,7 @@
 #define Game_WorldFILE
 #define MAX_KEYS (256)
 #include <iostream>
+#include <vector>
 #include "SDL.h"
 #include "Timer.h"
 #include "Square.h"
@@ -12,6 +13,7 @@
 
 class GameWorld {
 public:
+	
 	Square globalSquare;
 	GameWorld();
 	~GameWorld();

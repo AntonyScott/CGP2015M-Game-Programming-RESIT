@@ -158,7 +158,7 @@ void GameWorld::Render()
     //SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
     //SDL_RenderDrawRect(renderer, &rect);
     //aSquare.Render(renderer);
-    globalSquare.Render(renderer);
+    //globalSquare.Render(renderer);
     SDL_RenderPresent(renderer); //shows renderer to screen
 
     

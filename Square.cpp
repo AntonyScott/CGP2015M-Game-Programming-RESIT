@@ -20,6 +20,13 @@ void Square::Init(int x, int y, int width, int height)
 	R = 255;
 	G = 0;
 	B = 0;
+
+	for (int i = 0; i < 10; i++) 
+	{
+		Square* aSquare = new Square();
+		aSquare->Init(20 * i, 20 * i, 10, 10);
+		aSquareList.push_back(aSquare);
+	}
 }
 
 void Square::Update() 
@@ -44,4 +51,9 @@ void Square::Render(SDL_Renderer* aRenderer)
 	SDL_SetRenderDrawColor (aRenderer, R, G, B, 255);
 	SDL_RenderDrawRect (aRenderer, &rect);
 	SDL_RenderFillRect(aRenderer, &rect);
+
+	for (auto& aSquareIterator : aSquareList) 
+	{
+		aSquareIterator->Render(aRenderer);
+	}
 }

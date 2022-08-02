@@ -2,10 +2,12 @@
 #ifndef aSquareFile
 #define aSquareFile
 #include <iostream>
+#include <vector>
 #include "SDL.h"
 class Square
 {
 public:
+	std::vector<Square*> aSquareList;
 	Square();
 	~Square();
 	void Init(int x, int y, int width, int height);
