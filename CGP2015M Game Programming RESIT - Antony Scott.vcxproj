@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BallPaddleBrick.cpp" />
     <ClCompile Include="CGP2015M Game Programming RESIT - Antony Scott.cpp" />
     <ClCompile Include="GameContainerSquare.cpp" />
     <ClCompile Include="GameWorld.cpp" />
@@ -149,6 +150,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BallPaddleBrick.h" />
     <ClInclude Include="GameContainerSquare.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="Square.h" />
@@ -162,6 +164,8 @@
     <Import Project="packages\sdl2_image.nuget.2.6.0\build\native\sdl2_image.nuget.targets" Condition="Exists('packages\sdl2_image.nuget.2.6.0\build\native\sdl2_image.nuget.targets')" />
     <Import Project="packages\sdl2_mixer.nuget.redist.2.6.0\build\native\sdl2_mixer.nuget.redist.targets" Condition="Exists('packages\sdl2_mixer.nuget.redist.2.6.0\build\native\sdl2_mixer.nuget.redist.targets')" />
     <Import Project="packages\sdl2_mixer.nuget.2.6.0\build\native\sdl2_mixer.nuget.targets" Condition="Exists('packages\sdl2_mixer.nuget.2.6.0\build\native\sdl2_mixer.nuget.targets')" />
+    <Import Project="packages\sdl2_ttf.nuget.redist.2.20.0\build\native\sdl2_ttf.nuget.redist.targets" Condition="Exists('packages\sdl2_ttf.nuget.redist.2.20.0\build\native\sdl2_ttf.nuget.redist.targets')" />
+    <Import Project="packages\sdl2_ttf.nuget.2.20.0\build\native\sdl2_ttf.nuget.targets" Condition="Exists('packages\sdl2_ttf.nuget.2.20.0\build\native\sdl2_ttf.nuget.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -173,5 +177,7 @@
     <Error Condition="!Exists('packages\sdl2_image.nuget.2.6.0\build\native\sdl2_image.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_image.nuget.2.6.0\build\native\sdl2_image.nuget.targets'))" />
     <Error Condition="!Exists('packages\sdl2_mixer.nuget.redist.2.6.0\build\native\sdl2_mixer.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_mixer.nuget.redist.2.6.0\build\native\sdl2_mixer.nuget.redist.targets'))" />
     <Error Condition="!Exists('packages\sdl2_mixer.nuget.2.6.0\build\native\sdl2_mixer.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_mixer.nuget.2.6.0\build\native\sdl2_mixer.nuget.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_ttf.nuget.redist.2.20.0\build\native\sdl2_ttf.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_ttf.nuget.redist.2.20.0\build\native\sdl2_ttf.nuget.redist.targets'))" />
+    <Error Condition="!Exists('packages\sdl2_ttf.nuget.2.20.0\build\native\sdl2_ttf.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sdl2_ttf.nuget.2.20.0\build\native\sdl2_ttf.nuget.targets'))" />
   </Target>
 </Project>

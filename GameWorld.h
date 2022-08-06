@@ -2,13 +2,28 @@
 //#define MAX_KEYS(256)
 #ifndef Game_WorldFILE
 #define Game_WorldFILE
-#define MAX_KEYS (256)
+
 #include <iostream>
 #include <vector>
 #include "SDL.h"
+#include "SDL_ttf.h"
 #include "Timer.h"
 #include "Square.h"
 #include "GameContainerSquare.h"
+#include "BallPaddleBrick.h"
+
+#define MAX_KEYS (256)
+
+//screen sizes
+#define SCREEN_WIDTH 480
+#define SCREEN_HEIGHT 640
+
+//text sizes
+#define FONT_SIZE 32
+
+
+
+
 
 
 
@@ -17,6 +32,7 @@ public:
 	
 	Square globalSquare;
 	GameContainerSquare aGameContainerSquare;
+	BallPaddleBrick aBallPaddleBrick;
 	GameWorld();
 	~GameWorld();
 
@@ -45,5 +61,8 @@ public:
 	SDL_Renderer* renderer;
 	SDL_Window* window;
 	//SDL_Rect rect;
+	int points = 0;
+
+	//SDL_Rect paddle, ball, lives, brick, trail;
 };
 #endif

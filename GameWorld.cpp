@@ -60,6 +60,7 @@ void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, 
         isRunning = false;
         printf("SDL_Init failed: %s\n", SDL_GetError());
     }
+    //aGameContainerSquare.Init(50, 50, 0.0f, 1.0f, 7);
 }
 
 void GameWorld::Input()
@@ -72,7 +73,7 @@ void GameWorld::Input()
         {
             isRunning = false;
         }
-
+        
         if (event.type == SDL_KEYDOWN && event.key.repeat == NULL) //checks to see if a key is pressed and not repeated
         {
             switch (event.key.keysym.sym)
@@ -145,9 +146,7 @@ void GameWorld::Update()
     //function for updating game world based on inputs. E.g. updated character positions, game state (win or lose), NPC decisions etc.
     //block of code below calculates FPS and locks it
     // if less time has passed than allocated block, wait difference
-    //rect.x++;
     //globalSquare.Update();
-    //globalSquare.CleanUp();
     if (aTimer.getTicks() < DELTA_TIME)
     {
         SDL_Delay(DELTA_TIME - aTimer.getTicks());
@@ -176,7 +175,6 @@ void GameWorld::CleanUp()
     printf("Window destroyed! \n");
     SDL_DestroyRenderer(renderer);
     printf("Renderer destroyed! \n");
-    //globalSquare.CleanUp();
     SDL_Quit();
     printf("All processes eliminated! \n");
 }
