@@ -24,12 +24,6 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Square.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameContainerSquare.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BallPaddleBrick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,12 +36,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Square.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameContainerSquare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BallPaddleBrick.h">

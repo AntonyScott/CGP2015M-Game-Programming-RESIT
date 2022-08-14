@@ -13,6 +13,6 @@ void Timer::resetTicksTimer()
 
 int Timer::getTicks() 
 {
-	//printf("getTicks %i \n", SDL_GetTicks() - startTicks);
+	printf("getTicks %i \n", SDL_GetTicks() - startTicks);
 	return (SDL_GetTicks() - startTicks); //Return the current time minus the start time
 }

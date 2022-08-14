@@ -12,12 +12,6 @@ GameWorld::~GameWorld() //deconstructor
 
 void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
-    //aSquare.Init(70, 70, 100, 100);
-    //globalSquare.Init(70, 70, 100, 100);
-    //globalSquare.parent = this;
-
-    //aGameContainerSquare.Init(50, 50, 0.0f, 1.0f, 7);
-
 	int flags = 0;
 	if (fullscreen) 
 	{
@@ -36,7 +30,9 @@ void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, 
             printf("Width of the window: %i \n", width);
             printf("Height of the window: %i \n", height);
 
-			renderer = SDL_CreateRenderer(window, -1, 0);
+			//renderer = SDL_CreateRenderer(window, -1, 0);
+            aBallPaddleBrick.aRenderer = SDL_CreateRenderer(window, -1, 0);
+            SDL_SetRenderDrawBlendMode(aBallPaddleBrick.aRenderer, SDL_BLENDMODE_BLEND);
 		}
         else
         {
@@ -44,7 +40,8 @@ void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, 
             //return; //program ends if window could not be created
         }
 
-        if (renderer) //if renderer created
+        //if (renderer) //if renderer created
+        if(aBallPaddleBrick.aRenderer)
         {
             printf("Renderer created! \n"); //message sent to console
         }
@@ -60,7 +57,8 @@ void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, 
         isRunning = false;
         printf("SDL_Init failed: %s\n", SDL_GetError());
     }
-    //aGameContainerSquare.Init(50, 50, 0.0f, 1.0f, 7);
+    aBallPaddleBrick.InitVariables();
+    aBallPaddleBrick.ResetLevel(true);
 }
 
 void GameWorld::Input()
@@ -90,6 +88,7 @@ void GameWorld::Input()
             case SDLK_a:
                 printf("A has been pressed. \n");
                 globalKeys[SDLK_a] = true;
+                aBallPaddleBrick.paddle.x -= PADDLE_SPEED;
                 break;
             case SDLK_s:
                 printf("S has been pressed. \n");
@@ -98,6 +97,7 @@ void GameWorld::Input()
             case SDLK_d:
                 printf("D has been pressed. \n");
                 globalKeys[SDLK_d] = true;
+                aBallPaddleBrick.paddle.x += PADDLE_SPEED;
                 break;
             case SDLK_SPACE:
                 printf("Space has been pressed. \n");
@@ -122,6 +122,7 @@ void GameWorld::Input()
             case SDLK_a:
                 printf("A has been unpressed. \n");
                 globalKeys[SDLK_a] = false;
+                aBallPaddleBrick.paddle.x = PADDLE_SPEED; //paddle speed reset once button has been unpressed
                 break;
             case SDLK_s:
                 printf("S has been unpressed. \n");
@@ -130,6 +131,7 @@ void GameWorld::Input()
             case SDLK_d:
                 printf("D has been unpressed. \n");
                 globalKeys[SDLK_d] = false;
+                aBallPaddleBrick.paddle.x = PADDLE_SPEED;
                 break;
             case SDLK_SPACE:
                 printf("Space has been unpressed. \n");
@@ -143,29 +145,22 @@ void GameWorld::Input()
 
 void GameWorld::Update()
 {
-    //function for updating game world based on inputs. E.g. updated character positions, game state (win or lose), NPC decisions etc.
-    //block of code below calculates FPS and locks it
-    // if less time has passed than allocated block, wait difference
-    //globalSquare.Update();
     if (aTimer.getTicks() < DELTA_TIME)
     {
         SDL_Delay(DELTA_TIME - aTimer.getTicks());
     }
+    aBallPaddleBrick.UpdateBallAndPaddle();
 }
 
 void GameWorld::Render()
 {
     //function for rendering updates onto the screen, such as game states and updated character positions.
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 20, SDL_ALPHA_OPAQUE); //set colour of renderer
-    SDL_RenderClear(renderer); //clears the window to colour of renderer
-    //SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-    //SDL_RenderDrawRect(renderer, &rect);
-    //aSquare.Render(renderer);
-    //globalSquare.Render(renderer);
-    //aGameContainerSquare.Render(renderer);
-    SDL_RenderPresent(renderer); //shows renderer to screen
-
+    //SDL_SetRenderDrawColor(aBallPaddleBrick.aRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE); //set colour of renderer
+    //SDL_RenderClear(aBallPaddleBrick.aRenderer); //clears the window to colour of renderer
+    //aBallPaddleBrick.RenderBallPaddleBrick();
+    //SDL_RenderPresent(aBallPaddleBrick.aRenderer); //shows renderer to screen
+    aBallPaddleBrick.RenderBallPaddleBrick();
     
 }
 
@@ -173,7 +168,7 @@ void GameWorld::CleanUp()
 {
     SDL_DestroyWindow(window);
     printf("Window destroyed! \n");
-    SDL_DestroyRenderer(renderer);
+    SDL_DestroyRenderer(aBallPaddleBrick.aRenderer);
     printf("Renderer destroyed! \n");
     SDL_Quit();
     printf("All processes eliminated! \n");
