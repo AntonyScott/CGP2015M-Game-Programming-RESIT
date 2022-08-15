@@ -39,7 +39,7 @@ public:
 	void HandleOneSecondTimerInterval();
 
 	Uint32 TimerCallbackFunction(Uint32 interval, void* param);
-	Uint32 TimerCallbackFunctionCB(Uint32 interval, void* param);
+	static Uint32 TimerCallbackFunctionCB(Uint32 interval, void* param);
 
 	//cleans memory allocation
 	void CleanUp();

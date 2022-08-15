@@ -9,9 +9,27 @@ GameWorld::~GameWorld() //deconstructor
 {
 	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "Game Loop deconstructed at (%p)", this);
 }
+Uint32 GameWorld::TimerCallbackFunction(Uint32 interval, void* param)
+{
+    SDL_Event event;
+    SDL_UserEvent userevent;
+    userevent.type = SDL_USEREVENT;
+    userevent.code = 0;
+    userevent.data1 = (void*)"Timer Countdown";
+    userevent.data2 = NULL;
+    event.type = SDL_USEREVENT;
+    event.user = userevent;
+    SDL_PushEvent(&event);
+    return(interval);
+}
 
+Uint32 GameWorld::TimerCallbackFunctionCB(Uint32 interval, void* param)
+{
+    return ((GameWorld*)param)->TimerCallbackFunction(interval, param);
+}
 void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, int height, bool fullscreen)
 {
+    SDL_AddTimer(1000, &TimerCallbackFunctionCB, NULL);
 	int flags = 0;
 	if (fullscreen) 
 	{
@@ -60,7 +78,7 @@ void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, 
         isRunning = false;
         printf("SDL_Init failed: %s\n", SDL_GetError());
     }
-    SDL_AddTimer(1000, &TimerCallbackFunctionCB, NULL);
+    
 
     aBallPaddleBrick.InitVariables();
     
@@ -133,6 +151,10 @@ void GameWorld::Input()
             {
                 CountDownSeconds -= 1;
                 printf("Countdown : %i \n", CountDownSeconds);
+                if (CountDownSeconds <= 0)
+                {
+                    isRunning = false;
+                }
             }
         }
     }
@@ -173,40 +195,13 @@ void GameWorld::HandleOneSecondTimerInterval()
     }
 }
 
-Uint32 TimerCallbackFunction(Uint32 interval, void* param)
-{
-    SDL_Event event;
-    SDL_UserEvent userevent;
-    userevent.type = SDL_USEREVENT;
-    userevent.code = 0;
-    userevent.data1 = "Timer Countdown";
-    userevent.data2 = NULL;
-    event.type = SDL_USEREVENT;
-    event.user = userevent;
-    SDL_PushEvent(&event);
-    return(interval);
-}
 
-Uint32 TimerCallbackFunctionCB(Uint32 interval, void* param)
-{
-    return ((GameWorld*)param)->TimerCallbackFunction(interval, param);
-}
 
 
 void GameWorld::SplashScreen() 
 {
     splashScreen->render(aBallPaddleBrick.aRenderer);
     SDL_RenderPresent(aBallPaddleBrick.aRenderer);
-}
-
-Uint32 GameWorld::TimerCallbackFunction(Uint32 interval, void* param)
-{
-    return Uint32();
-}
-
-Uint32 GameWorld::TimerCallbackFunctionCB(Uint32 interval, void* param)
-{
-    return Uint32();
 }
 
 void GameWorld::CleanUp()
