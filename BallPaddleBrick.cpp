@@ -58,7 +58,7 @@ void BallPaddleBrick::InitVariables()
 		SOUND_BGMusic = Mix_LoadMUS("Content/bensound-scifi.wav");
 		Mix_VolumeChunk(SOUND_SFX, 128);
 		Mix_VolumeMusic(32);
-		Mix_PlayMusic(SOUND_BGMusic, 1);
+		Mix_PlayMusic(SOUND_BGMusic, -1);
 	}
 	ResetLevel(true);
 }
@@ -142,4 +142,12 @@ void BallPaddleBrick::RenderBallPaddleBrick()
 	}
 
 	SDL_RenderPresent(aRenderer);
+}
+
+void BallPaddleBrick::CleanUpAudio() 
+{
+	printf("Audio destroyed! \n");
+	Mix_FreeChunk(SOUND_SFX);
+	Mix_FreeMusic(SOUND_BGMusic);
+	Mix_CloseAudio();
 }

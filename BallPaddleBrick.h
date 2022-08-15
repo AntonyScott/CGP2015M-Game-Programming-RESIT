@@ -60,4 +60,6 @@ public:
 	void setBrickPosition(int i);
 	void UpdateBallAndPaddle();
 	void RenderBallPaddleBrick();
+
+	void CleanUpAudio();
 };

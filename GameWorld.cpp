@@ -60,6 +60,8 @@ void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, 
         isRunning = false;
         printf("SDL_Init failed: %s\n", SDL_GetError());
     }
+    SDL_AddTimer(1000, &TimerCallbackFunctionCB, NULL);
+
     aBallPaddleBrick.InitVariables();
     
     spaceBG = new SimpleSprite(0,0,480,640);
@@ -73,13 +75,13 @@ void GameWorld::Input()
 {
     SDL_Event event;
     const Uint8* keyboardStates = SDL_GetKeyboardState(NULL);
-    while (SDL_PollEvent(&event)) 
+    while (SDL_PollEvent(&event))
     {
-        if (event.type == SDL_QUIT) 
+        if (event.type == SDL_QUIT)
         {
             isRunning = false;
         }
-        if (keyboardStates[SDL_SCANCODE_ESCAPE]) 
+        if (keyboardStates[SDL_SCANCODE_ESCAPE])
         {
             printf("Escape has been pressed. \n");
             globalKeys[SDLK_ESCAPE] = true;
@@ -91,7 +93,7 @@ void GameWorld::Input()
             globalKeys[SDLK_a] = true;
             aBallPaddleBrick.paddle.x -= PADDLE_SPEED;
         }
-            
+
         if (keyboardStates[SDL_SCANCODE_D])
         {
             printf("D has been pressed. \n");
@@ -100,14 +102,14 @@ void GameWorld::Input()
         }
 
         if (keyboardStates[SDL_SCANCODE_W])
-        { 
+        {
             printf("W has been pressed. \n");
             globalKeys[SDLK_w] = true;
-            aBallPaddleBrick.ballSize++; 
+            aBallPaddleBrick.ballSize++;
             aBallPaddleBrick.ball.w = aBallPaddleBrick.ball.h = aBallPaddleBrick.ballSize;
             aBallPaddleBrick.trail.w = aBallPaddleBrick.trail.h = aBallPaddleBrick.ballSize;
         }
-        if (keyboardStates[SDL_SCANCODE_S]) 
+        if (keyboardStates[SDL_SCANCODE_S])
         {
             printf("S has been pressed. \n");
             globalKeys[SDLK_s] = true;
@@ -121,7 +123,18 @@ void GameWorld::Input()
             printf("Space has been pressed. \n");
             globalKeys[SDLK_SPACE] = true;
             aBallPaddleBrick.ResetLevel(true);
-        }    
+        }
+
+        if (event.type == SDL_USEREVENT)
+        {
+            printf("code: %i \n", event.user.code);
+
+            if (event.user.data1 == "Timer Countdown")
+            {
+                CountDownSeconds -= 1;
+                printf("Countdown : %i \n", CountDownSeconds);
+            }
+        }
     }
 }
 
@@ -151,10 +164,49 @@ void GameWorld::Render()
     
 }
 
+void GameWorld::HandleOneSecondTimerInterval() 
+{
+    CountDownSeconds -= 1;
+    if (CountDownSeconds < 0) 
+    {
+        CountDownSeconds = 0;
+    }
+}
+
+Uint32 TimerCallbackFunction(Uint32 interval, void* param)
+{
+    SDL_Event event;
+    SDL_UserEvent userevent;
+    userevent.type = SDL_USEREVENT;
+    userevent.code = 0;
+    userevent.data1 = "Timer Countdown";
+    userevent.data2 = NULL;
+    event.type = SDL_USEREVENT;
+    event.user = userevent;
+    SDL_PushEvent(&event);
+    return(interval);
+}
+
+Uint32 TimerCallbackFunctionCB(Uint32 interval, void* param)
+{
+    return ((GameWorld*)param)->TimerCallbackFunction(interval, param);
+}
+
+
 void GameWorld::SplashScreen() 
 {
     splashScreen->render(aBallPaddleBrick.aRenderer);
     SDL_RenderPresent(aBallPaddleBrick.aRenderer);
+}
+
+Uint32 GameWorld::TimerCallbackFunction(Uint32 interval, void* param)
+{
+    return Uint32();
+}
+
+Uint32 GameWorld::TimerCallbackFunctionCB(Uint32 interval, void* param)
+{
+    return Uint32();
 }
 
 void GameWorld::CleanUp()
@@ -163,6 +215,7 @@ void GameWorld::CleanUp()
     printf("Window destroyed! \n");
     SDL_DestroyRenderer(aBallPaddleBrick.aRenderer);
     printf("Renderer destroyed! \n");
+    aBallPaddleBrick.CleanUpAudio();
     SDL_Quit();
     printf("All processes eliminated! \n");
 }

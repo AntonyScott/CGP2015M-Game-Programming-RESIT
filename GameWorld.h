@@ -36,6 +36,11 @@ public:
 	//checks to see if game is running or not
 	bool Running() { return isRunning; }
 
+	void HandleOneSecondTimerInterval();
+
+	Uint32 TimerCallbackFunction(Uint32 interval, void* param);
+	Uint32 TimerCallbackFunctionCB(Uint32 interval, void* param);
+
 	//cleans memory allocation
 	void CleanUp();
 
@@ -45,6 +50,7 @@ public:
 	bool fullscreen = false;
 	bool isRunning = false;
 	const int DELTA_TIME = 60;
+	int CountDownSeconds = 60;
 	SDL_Window* window;
 };
 #endif
