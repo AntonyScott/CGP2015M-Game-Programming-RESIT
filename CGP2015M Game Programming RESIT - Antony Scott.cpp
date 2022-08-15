@@ -23,7 +23,6 @@ int main(int argc, char *argv[] )
         
         //Updates game state and variables
         gameWorld->Update();
-
         //draws game on screen
         gameWorld->Render();
     }

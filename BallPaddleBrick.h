@@ -1,16 +1,14 @@
 #include "SDL.h"
-#include "SDL_ttf.h"
-//#include "GameWorld.h"
-#include <list>
+#include "SimpleSprite.h"
 #include <string>
 
 #define SCREEN_WIDTH 480
 #define SCREEN_HEIGHT 640
 
 //ball and paddle
-#define BALL_SPEED 10
-#define PADDLE_SPEED 10
-#define BALL_SIZE 15
+#define BALL_SPEED 2
+#define PADDLE_SPEED 9
+#define BALL_SIZE 16
 #define TRAIL_SIZE 6
 
 //bricks
@@ -37,7 +35,9 @@ public:
 	int spaces = SPACING;
 
 	int level = 1;
+	
 	SDL_Rect paddle, ball, lives, brick, trail;
+	SimpleSprite* ball1;
 
 	int points = 0;
 
@@ -47,18 +47,13 @@ public:
 
 	int bricks[ROW * COLUMN];
 
-	std::list<float> trailCacheX;
-	std::list<float> trailCacheY;
-
-	TTF_Font* font;
 	SDL_Color colour, brickColour;
 
 	SDL_Renderer* aRenderer;
-
+	BallPaddleBrick();
 	void InitVariables();
 	void ResetLevel(bool resetGame);
 	void setBrickPosition(int i);
-	void WriteFont(std::string text, int x, int y);
 	void UpdateBallAndPaddle();
 	void RenderBallPaddleBrick();
 };

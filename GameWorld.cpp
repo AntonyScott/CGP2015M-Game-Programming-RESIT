@@ -58,21 +58,20 @@ void GameWorld::InitGameWorld(const char* title, int xPos, int yPos, int width, 
         printf("SDL_Init failed: %s\n", SDL_GetError());
     }
     aBallPaddleBrick.InitVariables();
-    aBallPaddleBrick.ResetLevel(true);
 }
 
 void GameWorld::Input()
 {
     //function for keys pressed, mouse movement, controller etc.
-    SDL_Event event;
+    /*SDL_Event event;
     while (SDL_PollEvent(&event))
     {
         if (event.type == SDL_QUIT)
         {
             isRunning = false;
         }
-        
-        if (event.type == SDL_KEYDOWN && event.key.repeat == NULL) //checks to see if a key is pressed and not repeated
+
+        if (event.type == SDL_KEYDOWN && event.key.repeat == NULL)
         {
             switch (event.key.keysym.sym)
             {
@@ -104,42 +103,82 @@ void GameWorld::Input()
                 globalKeys[SDLK_SPACE] = true;
                 break;
             }
+        }*/
+
+        //if (event.type == SDL_KEYUP && event.key.repeat == NULL) //checks to see if a key is pressed and not repeated
+        //{
+        //    switch (event.key.keysym.sym)
+        //    {
+        //    case SDLK_ESCAPE:
+        //        printf("Escape has been unpressed. \n");
+        //        globalKeys[SDLK_ESCAPE] = false;
+        //        isRunning = false;
+        //        break;
+        //    case SDLK_w:
+        //        printf("W has been unpressed. \n");
+        //        globalKeys[SDLK_w] = false;
+        //        break;
+        //    case SDLK_a:
+        //        printf("A has been unpressed. \n");
+        //        globalKeys[SDLK_a] = false;
+        //        //aBallPaddleBrick.paddle.x = PADDLE_SPEED; //paddle speed reset once button has been unpressed
+        //        break;
+        //    case SDLK_s:
+        //        printf("S has been unpressed. \n");
+        //        globalKeys[SDLK_s] = false;
+        //        break;
+        //    case SDLK_d:
+        //        printf("D has been unpressed. \n");
+        //        globalKeys[SDLK_d] = false;
+        //        //aBallPaddleBrick.paddle.x = PADDLE_SPEED;
+        //        break;
+        //    case SDLK_SPACE:
+        //        printf("Space has been unpressed. \n");
+        //        globalKeys[SDLK_SPACE] = false;
+        //        break;
+        //    }
+        //}
+    SDL_Event event;
+    const Uint8* keyboardStates = SDL_GetKeyboardState(NULL);
+    while (SDL_PollEvent(&event)) 
+    {
+        if (event.type == SDL_QUIT) 
+        {
+            isRunning = false;
+        }
+        if (keyboardStates[SDL_SCANCODE_ESCAPE]) 
+        {
+            printf("Escape has been pressed. \n");
+            globalKeys[SDLK_ESCAPE] = true;
+            isRunning = false;
+        }
+        if (keyboardStates[SDL_SCANCODE_A])
+        {
+            printf("A has been pressed. \n");
+            globalKeys[SDLK_a] = true;
+            aBallPaddleBrick.paddle.x -= PADDLE_SPEED;
+        }
+            
+        if (keyboardStates[SDL_SCANCODE_D])
+        {
+            aBallPaddleBrick.paddle.x += PADDLE_SPEED;
         }
 
-        if (event.type == SDL_KEYUP && event.key.repeat == NULL) //checks to see if a key is pressed and not repeated
-        {
-            switch (event.key.keysym.sym)
-            {
-            case SDLK_ESCAPE:
-                printf("Escape has been unpressed. \n");
-                globalKeys[SDLK_ESCAPE] = false;
-                isRunning = false;
-                break;
-            case SDLK_w:
-                printf("W has been unpressed. \n");
-                globalKeys[SDLK_w] = false;
-                break;
-            case SDLK_a:
-                printf("A has been unpressed. \n");
-                globalKeys[SDLK_a] = false;
-                aBallPaddleBrick.paddle.x = PADDLE_SPEED; //paddle speed reset once button has been unpressed
-                break;
-            case SDLK_s:
-                printf("S has been unpressed. \n");
-                globalKeys[SDLK_s] = false;
-                break;
-            case SDLK_d:
-                printf("D has been unpressed. \n");
-                globalKeys[SDLK_d] = false;
-                aBallPaddleBrick.paddle.x = PADDLE_SPEED;
-                break;
-            case SDLK_SPACE:
-                printf("Space has been unpressed. \n");
-                globalKeys[SDLK_SPACE] = false;
-                break;
-            }
+        if (keyboardStates[SDL_SCANCODE_W])
+        { 
+            printf("W has been pressed. \n");
+            globalKeys[SDLK_w] = true;
+            aBallPaddleBrick.ballSize++; 
+            aBallPaddleBrick.ball.w = aBallPaddleBrick.ball.h = aBallPaddleBrick.ballSize;
+            aBallPaddleBrick.trail.w = aBallPaddleBrick.trail.h = aBallPaddleBrick.ballSize;
         }
-        
+        if (keyboardStates[SDL_SCANCODE_S]) 
+        {
+            aBallPaddleBrick.ballSize--;
+            aBallPaddleBrick.ball.w = aBallPaddleBrick.ball.h = aBallPaddleBrick.ballSize;
+            aBallPaddleBrick.trail.w = aBallPaddleBrick.trail.h = aBallPaddleBrick.ballSize;
+        }
+            
     }
 }
 
@@ -161,6 +200,7 @@ void GameWorld::Render()
     //aBallPaddleBrick.RenderBallPaddleBrick();
     //SDL_RenderPresent(aBallPaddleBrick.aRenderer); //shows renderer to screen
     aBallPaddleBrick.RenderBallPaddleBrick();
+    SDL_RenderClear(aBallPaddleBrick.aRenderer);
     
 }
 
