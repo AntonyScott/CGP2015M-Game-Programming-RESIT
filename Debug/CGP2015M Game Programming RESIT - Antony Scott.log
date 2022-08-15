@@ -1,13 +1,9 @@
 ﻿  BallPaddleBrick.cpp
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(31,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(68,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(70,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(72,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(73,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(79,23): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(80,23): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-  CGP2015M Game Programming RESIT - Antony Scott.cpp
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(32,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(79,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(81,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(90,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(91,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
   GameWorld.cpp
-  SimpleSprite.cpp
   Generating Code...
   CGP2015M Game Programming RESIT - Antony Scott.vcxproj -> C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\Debug\CGP2015M Game Programming RESIT - Antony Scott.exe

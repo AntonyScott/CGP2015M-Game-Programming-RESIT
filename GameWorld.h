@@ -8,12 +8,17 @@
 #include "SDL_ttf.h"
 #include "Timer.h"
 #include "BallPaddleBrick.h"
+#include "SimpleSprite.h"
 
 #define MAX_KEYS (256)
 
 class GameWorld {
 public:
+	//instances
 	BallPaddleBrick aBallPaddleBrick;
+	SimpleSprite* spaceBG;
+	SimpleSprite* splashScreen;
+
 	GameWorld();
 	~GameWorld();
 
@@ -34,15 +39,12 @@ public:
 	//cleans memory allocation
 	void CleanUp();
 
+	void SplashScreen();
+
 	Timer aTimer;
 	bool fullscreen = false;
 	bool isRunning = false;
-	const int DELTA_TIME = 30;
+	const int DELTA_TIME = 60;
 	SDL_Window* window;
-	//SDL_Renderer* renderer;
-	//SDL_Rect rect;
-	//int points = 0;
-
-	//SDL_Rect paddle, ball, lives, brick, trail;
 };
 #endif

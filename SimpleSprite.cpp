@@ -33,8 +33,8 @@ void SimpleSprite::render(SDL_Renderer* renderer)
 	// add your code to render things here!
 	destRect.x = x;
 	destRect.y = y;
-	destRect.w = 16;
-	destRect.h = 16;
+	destRect.w = 480;
+	destRect.h = 640;
 	SDL_RenderCopy(renderer, texture, &srcRect, &destRect);
 }
 

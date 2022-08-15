@@ -1,5 +1,6 @@
 #include "SDL.h"
 #include "SimpleSprite.h"
+#include "SDL_mixer.h"
 #include <string>
 
 #define SCREEN_WIDTH 480
@@ -25,6 +26,10 @@
 class BallPaddleBrick 
 {
 public:
+
+	Mix_Music* SOUND_BGMusic = NULL;
+	Mix_Chunk* SOUND_SFX = NULL;
+
 	int ballSpeed = BALL_SPEED;
 	int paddleSpeed = PADDLE_SPEED;
 	int ballSize = BALL_SIZE;
@@ -37,13 +42,12 @@ public:
 	int level = 1;
 	
 	SDL_Rect paddle, ball, lives, brick, trail;
-	SimpleSprite* ball1;
 
 	int points = 0;
 
 	float velocityX = 0;
 	float velocityY = 0;
-	int lifeCount = 3;
+	int lifeCount = 100;
 
 	int bricks[ROW * COLUMN];
 

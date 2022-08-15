@@ -19,7 +19,7 @@ public:
 	void setAnimationSpeed(unsigned int speed);
 
 	// x and y position of the sprite in screen space
-	int x, y = 10;
+	int x, y = 0;
 	int h, w = 0;
 	// width and height of the sprite within the source texture
 	int frameWidthPixels, frameHeightPixels = 0;
