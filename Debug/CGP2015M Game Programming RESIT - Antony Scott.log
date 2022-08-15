@@ -2,11 +2,9 @@
 C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(26,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(80,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(82,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(84,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(85,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(102,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(103,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(163,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(164,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(165,65): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(91,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(92,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(128,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(129,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\BallPaddleBrick.cpp(130,65): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   CGP2015M Game Programming RESIT - Antony Scott.vcxproj -> C:\Users\Antony\Desktop\CGP2015M-Game-Programming-RESIT\Debug\CGP2015M Game Programming RESIT - Antony Scott.exe

@@ -81,70 +81,35 @@ void BallPaddleBrick::UpdateBallAndPaddle()
 		float normal = relative / (paddle.w / 2);
 		float bounceBall = normal * (5 * PI / 12);
 
-		velocityX = -ballSpeed * cos(bounceBall);
-		velocityY = ballSpeed * -sin(bounceBall);
+		velocityY = -ballSpeed * cos(bounceBall);
+		velocityX = ballSpeed * -sin(bounceBall);
 	}
 
-	if (ball.y <= 0) 
-	{
-		velocityY = -velocityY;
-	}
-	if (ball.y + ballSize >= SCREEN_HEIGHT) 
-	{
-		velocityY = -velocityY;
-		lifeCount--;
-	}
-	if (ball.x <= 0 || ball.x + ballSize >= SCREEN_WIDTH) 
-	{
-		velocityX = -velocityX;
-	}
-
+	if (ball.y <= 0) { velocityY = -velocityY; }
+	if (ball.y + ballSize >= SCREEN_HEIGHT) { velocityY = -velocityY; lifeCount--; }
+	if (ball.x <= 0 || ball.x + ballSize >= SCREEN_WIDTH) { velocityX = -velocityX; }
 	ball.y += velocityY;
 	ball.x += velocityX;
+	if (paddle.x < 0) { paddle.x = 0; }
+	if (paddle.x + paddle.w > SCREEN_WIDTH) { paddle.x = SCREEN_WIDTH - paddle.w; }
+	if (lifeCount <= 0) { ResetLevel(true); }
 
-	if (paddle.x < 0) 
-	{
-		paddle.x = 0;
-	}
-	if (paddle.x + paddle.w > SCREEN_WIDTH) 
-	{
-		paddle.x = SCREEN_WIDTH - paddle.w;
-	}
-	if (lifeCount <= 0) 
-	{
-		ResetLevel(true);
-	}
 
-	//when ball hits bricks
 	for (int i = 0; i < columns * rows; i++) 
 	{
 		setBrickPosition(i);
+		
 		if (SDL_HasIntersection(&ball, &brick) && bricks[i] > 0) 
 		{
 			points++;
 			bricks[i]--;
 
-			if (ball.x >= brick.x) 
-			{ 
-				velocityX = velocityX * -1; ball.x = ball.x - 20; 
-			}
-			
-			if (ball.x <= brick.x) 
-			{ 
-				velocityX = velocityX * -1; ball.x = ball.x + 20; 
-			}
-			
-			if (ball.y <= brick.y) 
-			{ 
-				velocityY = velocityY * -1; ball.y = ball.y - 20;
-			}
-			
-			if (ball.y >= brick.y) 
-			{ 
-				velocityY = velocityY * -1; ball.y = ball.y + 20; 
-			}
+			if(ball.x >= brick.x) { velocityX = velocityX * -1; ball.x = ball.x - 20; }
+			if (ball.x <= brick.x) { velocityX = velocityX * -1; ball.x = ball.x + 20; }
+			if (ball.y <= brick.y) { velocityY = velocityY * -1; ball.y = ball.y - 20; }
+			if (ball.y >= brick.y) { velocityY = velocityY * -1; ball.y = ball.y + 20; }
 
-			if (points == 10 * level) 
+			if (points == 5 * level) 
 			{
 				ResetLevel(false);
 			}
