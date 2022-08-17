@@ -26,10 +26,10 @@ void BallPaddleBrick::ResetLevel(bool reset)
 	}
 	
 	points = 0;
-	lifeCount = 3;
+	lifeCount = 100;
 	paddle.x = (SCREEN_WIDTH / 2) - (paddle.w / 2);
 	ball.y = paddle.y - (paddle.h * 4);
-	velocityY = ballSpeed / 2;
+	velocityY = ballSpeed;
 	velocityX = 0;
 	ball.x = SCREEN_WIDTH / 2 - (ballSize / 2);
 }

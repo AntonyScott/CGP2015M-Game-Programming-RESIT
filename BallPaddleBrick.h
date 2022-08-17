@@ -1,7 +1,6 @@
 #include "SDL.h"
 #include "SimpleSprite.h"
 #include "SDL_mixer.h"
-#include <string>
 
 #define SCREEN_WIDTH 480
 #define SCREEN_HEIGHT 640

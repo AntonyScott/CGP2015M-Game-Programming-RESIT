@@ -3,7 +3,6 @@
 #define Game_WorldFILE
 
 #include <iostream>
-#include <vector>
 #include "SDL.h"
 #include "SDL_ttf.h"
 #include "Timer.h"
@@ -49,7 +48,7 @@ public:
 	Timer aTimer;
 	bool fullscreen = false;
 	bool isRunning = false;
-	const int DELTA_TIME = 60;
+	const int DELTA_TIME = 10;
 	int CountDownSeconds = 60;
 	SDL_Window* window;
 };

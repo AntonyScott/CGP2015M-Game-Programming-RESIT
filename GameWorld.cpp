@@ -93,7 +93,7 @@ void GameWorld::Input()
 {
     SDL_Event event;
     const Uint8* keyboardStates = SDL_GetKeyboardState(NULL);
-    while (SDL_PollEvent(&event))
+    if (SDL_PollEvent(&event))
     {
         if (event.type == SDL_QUIT)
         {
@@ -177,10 +177,7 @@ void GameWorld::Render()
     SDL_SetRenderDrawColor(aBallPaddleBrick.aRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE); //set colour of renderer
     SDL_RenderClear(aBallPaddleBrick.aRenderer); //clears the window to colour of renderer
 
-    spaceBG->render(aBallPaddleBrick.aRenderer);
-    //SDL_RenderPresent(aBallPaddleBrick.aRenderer);
-    //aBallPaddleBrick.RenderBallPaddleBrick();
-    //SDL_RenderPresent(aBallPaddleBrick.aRenderer); //shows renderer to screen
+    spaceBG->render(aBallPaddleBrick.aRenderer); //render space background to screen
     aBallPaddleBrick.RenderBallPaddleBrick();
     SDL_RenderPresent(aBallPaddleBrick.aRenderer);
     
@@ -195,13 +192,11 @@ void GameWorld::HandleOneSecondTimerInterval()
     }
 }
 
-
-
-
 void GameWorld::SplashScreen() 
 {
     splashScreen->render(aBallPaddleBrick.aRenderer);
     SDL_RenderPresent(aBallPaddleBrick.aRenderer);
+    SDL_Delay(3000);
 }
 
 void GameWorld::CleanUp()

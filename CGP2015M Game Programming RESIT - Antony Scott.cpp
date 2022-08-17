@@ -7,8 +7,6 @@
 //user created header files:
 #include "GameWorld.h"
 
-using namespace std;
-
 GameWorld* gameWorld = nullptr;
 
 int main(int argc, char *argv[] )
@@ -17,7 +15,6 @@ int main(int argc, char *argv[] )
 
 	gameWorld->InitGameWorld("Antony Scott, CGP2015M Game Programming, Student ID: 25295522, Title: Brick Break", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
     gameWorld->SplashScreen();
-    SDL_Delay(3000);
 
     while (gameWorld->Running())
     {
